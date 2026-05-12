@@ -10,7 +10,8 @@ ctk.set_appearance_mode("light")
 
 #Commands
 def option_menu_event(choice):
-    text_area.configure(font=choice)
+    size = int(slider.get())
+    text_area.configure(font=(choice,size))
 
 def switch_event():
     current_mode = switch_var.get()
@@ -18,7 +19,8 @@ def switch_event():
     switch.configure(text="Mode: "+current_mode)
 
 def slider_event(value):
-    text_area.configure(font=value)
+    current_font = option_menu.get()
+    text_area.configure(font=(current_font, value))
 
 # UI Elements
 
@@ -37,13 +39,23 @@ switch = ctk.CTkSwitch(root,
                        command=switch_event,
                        variable=switch_var,
                        onvalue="dark", offvalue="light")
-switch.pack(side="top", anchor="nw", padx=2, pady=2)
+switch.pack(anchor="nw", padx=2, pady=2)
+
+# Header Label
+slider_title = ctk.CTkLabel(root,
+                            text="Text Size",
+                            font=("Arial", 12, "bold"))
+slider_title.pack(anchor="nw", padx=10, pady=(10, 0))
+
+#Slider
+slider = customtkinter.CTkSlider(root,
+                                 from_=8, to=48,
+                                 command=slider_event)
+slider.set(14)
+slider.pack(anchor="nw", padx=2, pady=2)
 
 #Text box
 text_area = ctk.CTkTextbox(root, width=480, height=400, font=("Arial", 14))
 text_area.pack(padx=5, pady=5)
-
-#Slider
-
 
 root.mainloop()
