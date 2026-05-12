@@ -52,7 +52,7 @@ slider = customtkinter.CTkSlider(root,
                                  from_=8, to=48,
                                  command=slider_event)
 slider.set(14)
-slider.pack(anchor="nw", padx=2, pady=2)
+slider.pack(anchor="n", padx=2, pady=2)
 
 #Text box
 text_area = ctk.CTkTextbox(root, width=480, height=400, font=("Arial", 14))
