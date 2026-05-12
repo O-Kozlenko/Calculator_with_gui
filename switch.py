@@ -1,4 +1,6 @@
 import customtkinter
+from PIL import Image
+from customtkinter import set_window_scaling
 
 app = customtkinter.CTk()
 app.geometry("400x150")
@@ -25,5 +27,16 @@ option_menu = customtkinter.CTkOptionMenu(app, values=["None","red", "orange","y
                                          command=option_menu_callback)
 option_menu.set("Background color")
 option_menu.pack(side="top", anchor="nw", padx=2, pady=2)
+
+
+def slider_event(value):
+    label.configure(app, width=value,height=value)
+
+slider = customtkinter.CTkSlider(app, from_=100, to=2000, command=slider_event)
+slider.pack(side="top", anchor="nw", padx=2, pady=2)
+
+label = customtkinter.CTkLabel(app, text="Label",width=10,height=10, fg_color="transparent")
+label.pack(side="top", anchor="nw", padx=2, pady=2)
+
 
 app.mainloop()
